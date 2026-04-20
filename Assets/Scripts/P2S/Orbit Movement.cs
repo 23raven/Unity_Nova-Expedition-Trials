@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class OrbitMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Transform target;   // объект, вокруг которого крутимся
+    public float speed = 20f;  // скорость вращения
+    public Vector3 axis = Vector3.up; // ось вращения (обычно вверх)
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (target != null)
+        {
+            transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+        }
     }
 }
