@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class OrbitMovement : MonoBehaviour
 {
-    public Transform target;   // объект, вокруг которого крутимся
-    public float speed = 20f;  // скорость вращения
-    public Vector3 axis = Vector3.up; // ось вращения (обычно вверх)
+    public Transform target;
+    public float orbitSpeed = 20f;
+    public Vector3 orbitAxis = Vector3.up;
+
+    public float selfRotationSpeed = 50f; // вращение вокруг своей оси
+    public Vector3 selfAxis = Vector3.up;
 
     void Update()
     {
         if (target != null)
         {
-            transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+            // орбита вокруг target
+            transform.RotateAround(target.position, orbitAxis, orbitSpeed * Time.deltaTime);
         }
+
+        // вращение вокруг своей оси
+        transform.Rotate(selfAxis, selfRotationSpeed * Time.deltaTime);
     }
 }

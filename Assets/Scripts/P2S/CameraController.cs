@@ -1,45 +1,34 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float zoomDistance = 3f;
+    public Transform target;
 
-    private Transform target;
-    private bool isMoving = false;
+    private Vector3 localOffset;
+    
+    public float desiredDistance = 4f;
 
-    void Update()
-    {
-        if (isMoving && target != null)
-        {
-            MoveToTarget();
-        }
-    }
-
-    public void FocusOnTarget(Transform newTarget)
+    public void SetTarget(Transform newTarget)
     {
         target = newTarget;
-        isMoving = true;
-    }
 
-    void MoveToTarget()
-    {
+        // направление от планеты к камере
         Vector3 direction = (transform.position - target.position).normalized;
 
-        Vector3 desiredPosition = target.position + direction * zoomDistance;
+        // задаём НОВЫЙ offset с нужной дистанцией
+        localOffset = direction * desiredDistance;
+    }
 
-        transform.position = Vector3.Lerp(
-            transform.position,
-            desiredPosition,
-            Time.deltaTime * moveSpeed
-        );
 
+
+    void LateUpdate()
+    {
+        if (target == null) return;
+
+        // преобразуем обратно в мир
+        Vector3 desiredPosition = target.TransformPoint(localOffset);
+
+        transform.position = desiredPosition;
         transform.LookAt(target);
-
-        // ����� ����� �������� � ���������������
-        if (Vector3.Distance(transform.position, desiredPosition) < 0.05f)
-        {
-            isMoving = false;
-        }
     }
 }
