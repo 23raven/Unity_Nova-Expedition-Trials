@@ -31,6 +31,7 @@ public class CameraManager : MonoBehaviour
         pitch -= mouseY;
 
         pitch = Mathf.Clamp(pitch, minY, maxY);
+
     }
 
     void FollowTarget()
@@ -39,7 +40,12 @@ public class CameraManager : MonoBehaviour
 
         Vector3 offset = rotation * new Vector3(0, height, -distance);
 
-        transform.position = target.position + offset;
+     
+        transform.position = Vector3.Lerp(
+        transform.position,
+        target.position + offset,
+        Time.deltaTime * 10f
+);
         transform.LookAt(target.position + Vector3.up * 1.5f);
     }
 }
