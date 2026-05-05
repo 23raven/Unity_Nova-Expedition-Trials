@@ -1,16 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Movement")]
     public float speed = 5f;
     public float sprintMultiplier = 2f;
-
-    public float maxSprintTime = 3f;     // �������� ��������� (���)
-    public float recoverySpeed = 1f;     // �������� ��������������
-
     public Transform cameraTransform;
 
+    [Header("Sprint")]
+    public float maxSprintTime = 3f;
+    public float recoverySpeed = 1f;
+    public float recoveryDelay = 1f; // задержка перед восстановлением
+
     private float currentSprintTime;
+    private float recoveryTimer;
     private bool isSprinting;
 
     void Start()
@@ -20,8 +23,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        HandleSprint();
+        Move();
+    }
 
+    void Move()
+    {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
@@ -33,40 +39,43 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = forward * v + right * h;
 
-        float currentSpeed = speed;
+        bool shift = Input.GetKey(KeyCode.LeftShift);
 
-        if (isSprinting)
+        // 💥 СПРИНТ ВКЛЮЧАЕТСЯ ТОЛЬКО ЕСЛИ ЕСТЬ ЭНЕРГИЯ
+        if (shift && currentSprintTime > 0f && move.magnitude > 0.1f)
         {
-            currentSpeed *= sprintMultiplier;
+            isSprinting = true;
+
+            currentSprintTime -= Time.deltaTime;
+            recoveryTimer = 0f; // сбрасываем таймер восстановления
+
+            if (currentSprintTime <= 0f)
+            {
+                currentSprintTime = 0f;
+                isSprinting = false;
+            }
         }
+        else
+        {
+            isSprinting = false;
+
+            // ⏳ задержка перед восстановлением
+            recoveryTimer += Time.deltaTime;
+
+            if (recoveryTimer >= recoveryDelay)
+            {
+                currentSprintTime += Time.deltaTime * recoverySpeed;
+                currentSprintTime = Mathf.Clamp(currentSprintTime, 0f, maxSprintTime);
+            }
+        }
+
+        float currentSpeed = isSprinting ? speed * sprintMultiplier : speed;
 
         transform.position += move * currentSpeed * Time.deltaTime;
 
         if (move != Vector3.zero)
         {
             transform.forward = move;
-        }
-    }
-
-    void HandleSprint()
-    {
-        bool shift = Input.GetKey(KeyCode.LeftShift);
-
-        if (shift && currentSprintTime > 0f)
-        {
-            isSprinting = true;
-            currentSprintTime -= Time.deltaTime;
-        }
-        else
-        {
-            isSprinting = false;
-
-            // ��������������
-            if (currentSprintTime < maxSprintTime)
-            {
-                currentSprintTime += Time.deltaTime * recoverySpeed;
-                currentSprintTime = Mathf.Clamp(currentSprintTime, 0f, maxSprintTime);
-            }
         }
     }
 }
