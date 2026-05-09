@@ -350,8 +350,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1381987104}
   - {fileID: 913686418}
+  - {fileID: 1381987104}
   - {fileID: 1497228025}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -559,14 +559,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Obs
   obstaclePrefab: {fileID: 701122418764482481, guid: 1b6f17dd1ef47bc4e8c573c75d1e576a, type: 3}
-  sizeMultiplierRange: {x: 0.8, y: 1.4}
   spawnPoint: {fileID: 1381987104}
-  horizontalSpread: 600
-  spawnInterval: 0.8
-  fallSpeed: 300
+  sizeMultiplierRange: {x: 0.8, y: 1.4}
+  horizontalSpread: 900
+  spawnInterval: 0.2
+  fallSpeed: 600
   bottomY: -1200
   treatAsUI: 0
-  maxActive: 4
+  maxActive: 24
 --- !u!1 &1416660639
 GameObject:
   m_ObjectHideFlags: 0
