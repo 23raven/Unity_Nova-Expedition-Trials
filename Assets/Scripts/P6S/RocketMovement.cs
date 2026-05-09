@@ -11,11 +11,25 @@ public class RocketMovement : MonoBehaviour
     [Tooltip("Use raw input (no smoothing)")]
     public bool useRawInput = true;
 
+    [Tooltip("Left boundary on X (pixels for UI, world units for non-UI)")]
+    public float leftBoundary = -900f;
+
+    [Tooltip("Right boundary on X (pixels for UI, world units for non-UI)")]
+    public float rightBoundary = 900f;
+
     private RectTransform rectTransform;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
+
+        // Гарантируем корректный порядок границ
+        if (leftBoundary > rightBoundary)
+        {
+            float tmp = leftBoundary;
+            leftBoundary = rightBoundary;
+            rightBoundary = tmp;
+        }
     }
 
     void Update()
@@ -24,18 +38,25 @@ public class RocketMovement : MonoBehaviour
         if (Mathf.Approximately(move, 0f))
             return;
 
+        float deltaTime = Time.deltaTime;
+
         if (rectTransform != null)
         {
-            // Для UI: двигаем anchoredPosition в пикселях
+            // Для UI: двигаем anchoredPosition в пикселях и клэмпим по границам
             Vector2 pos = rectTransform.anchoredPosition;
-            pos.x += move * uiSpeed * Time.deltaTime;
+            float deltaX = move * uiSpeed * deltaTime;
+            pos.x = Mathf.Clamp(pos.x + deltaX, leftBoundary, rightBoundary);
             rectTransform.anchoredPosition = pos;
         }
         else
         {
-            // Для обычных объектов: двигаем в world/local единицах
-            Vector3 movement = new Vector3(move, 0f, 0f);
-            transform.Translate(movement * speed * Time.deltaTime, Space.Self);
+            // Для обычных объектов: двигаем в world/local единицах и клэмпим глобальную позицию
+            Vector3 movement = new Vector3(move * speed * deltaTime, 0f, 0f);
+            transform.Translate(movement, Space.Self);
+
+            Vector3 worldPos = transform.position;
+            worldPos.x = Mathf.Clamp(worldPos.x, leftBoundary, rightBoundary);
+            transform.position = worldPos;
         }
     }
 }
