@@ -5,7 +5,7 @@ using UnityEngine;
 public class MiniGameTwo : MonoBehaviour
 {
     public List<Tile> tiles;
-
+    public GameManagerOne gameManager;
     private List<int> sequence = new List<int>();
     private int currentIndex = 0;
     private bool isPlayerTurn = false;
@@ -66,6 +66,7 @@ public class MiniGameTwo : MonoBehaviour
             if (currentIndex >= sequence.Count)
             {
                 Debug.Log("Правильно ✅");
+                gameManager.WinMiniGame();
                 isPlayerTurn = false;
             }
         }

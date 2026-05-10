@@ -5,7 +5,7 @@ public class GameManagerOne : MonoBehaviour
     public CameraController cameraController;
 
     // UI мини-игры
-    public GameObject miniGameTiming;
+    public GameObject currentMiniGame;
 
     // объект планеты
     public PlanetManager currentPlanet;
@@ -36,7 +36,7 @@ public class GameManagerOne : MonoBehaviour
         cameraController.transform.rotation = startCamRot;
 
         // 2. выключить мини-игру
-        Destroy(miniGameTiming);
+        Destroy(currentMiniGame);
 
         // 3. отключить PlanetManager
         currentPlanet.enabled = false;

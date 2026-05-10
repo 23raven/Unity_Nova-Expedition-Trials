@@ -7,9 +7,14 @@ public class PlanetManager : MonoBehaviour
     public CameraController cameraController;
     public GameObject UICanvas;
     public GameObject MiniGame;
+    public GameManagerOne gameManager;
     void OnMouseDown()
     {
         Debug.Log("You tapped on planet " + planetName);
+
+        gameManager.currentMiniGame = MiniGame;
+        gameManager.currentPlanet = this;
+
         cameraController.SetTarget(transform);
 
         UICanvas.SetActive(true);

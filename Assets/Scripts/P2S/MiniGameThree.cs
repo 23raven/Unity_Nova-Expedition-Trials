@@ -12,6 +12,8 @@ public class MiniGameThree : MonoBehaviour
     private int matchedPairs = 0;
     private int totalPairs = 3;
 
+    public GameManagerOne gameManager;
+
     void Start()
     {
         foreach (var dot in allDots)
@@ -50,6 +52,8 @@ public class MiniGameThree : MonoBehaviour
             if (matchedPairs >= totalPairs)
             {
                 Debug.Log("YOU WON 🎉");
+
+                gameManager.WinMiniGame();
             }
         }
         else

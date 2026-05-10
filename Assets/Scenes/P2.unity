@@ -597,6 +597,7 @@ MonoBehaviour:
   cameraController: {fileID: 241647195}
   UICanvas: {fileID: 46567123}
   MiniGame: {fileID: 1008283689}
+  gameManager: {fileID: 1543208411}
 --- !u!1 &487580635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1974,6 +1975,7 @@ MonoBehaviour:
   - {fileID: 1509974361}
   - {fileID: 1848119566}
   - {fileID: 682005624}
+  gameManager: {fileID: 1543208411}
 --- !u!1 &1041565834
 GameObject:
   m_ObjectHideFlags: 0
@@ -2421,6 +2423,7 @@ MonoBehaviour:
   cameraController: {fileID: 241647195}
   UICanvas: {fileID: 46567123}
   MiniGame: {fileID: 1246097982}
+  gameManager: {fileID: 1543208411}
 --- !u!1 &1199320032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2691,6 +2694,7 @@ MonoBehaviour:
   cameraController: {fileID: 241647195}
   UICanvas: {fileID: 46567123}
   MiniGame: {fileID: 1522386161}
+  gameManager: {fileID: 1543208411}
 --- !u!1 &1509974357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2924,6 +2928,7 @@ MonoBehaviour:
   - {fileID: 1041565838}
   lineParent: {fileID: 912023022}
   linePrefab: {fileID: 7422821389443373933, guid: 0e5753cb920f3924d9ab2fb8557e3e86, type: 3}
+  gameManager: {fileID: 1543208411}
 --- !u!1 &1543208409
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,7 +2974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManagerOne
   cameraController: {fileID: 241647195}
-  miniGameTiming: {fileID: 1246097982}
+  currentMiniGame: {fileID: 0}
   currentPlanet: {fileID: 1126585954}
   miniGameCount: 0
 --- !u!1 &1626918890
