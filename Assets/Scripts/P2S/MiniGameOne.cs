@@ -7,6 +7,9 @@ public class MiniGameOne : MonoBehaviour
     public RectTransform horizontalGreen;
     public RectTransform verticalGreen;
 
+    public GameManagerOne gameManager;
+    private bool isCompleted = false;
+
     public float speed = 2f;
 
     private float t;
@@ -54,10 +57,13 @@ public class MiniGameOne : MonoBehaviour
         if (indicatorX >= minX && indicatorX <= maxX)
         {
             Debug.Log("ПОПАЛ ✅");
+
+            gameManager.WinMiniGame();
         }
         else
         {
             Debug.Log("ПРОМАЗАЛ ❌");
         }
     }
+
 }

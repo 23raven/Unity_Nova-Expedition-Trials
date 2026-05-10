@@ -11,9 +11,12 @@ public class CameraController : MonoBehaviour
     private Rect targetRect;
     private bool isResizing = false;
 
+    private Rect defaultRect;
+
     void Awake()
     {
         cam = GetComponent<Camera>();
+        defaultRect = cam.rect;
     }
 
     public void SetTarget(Transform newTarget, float distance = 4f)
@@ -62,5 +65,13 @@ public class CameraController : MonoBehaviour
             Mathf.Lerp(a.width, b.width, t),
             Mathf.Lerp(a.height, b.height, t)
         );
+    }
+
+    public void ResetCamera()
+    {
+        target = null;
+
+        targetRect = defaultRect;
+        isResizing = true;
     }
 }
