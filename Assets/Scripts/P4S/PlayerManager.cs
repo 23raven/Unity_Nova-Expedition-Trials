@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Coin"))
@@ -22,6 +22,12 @@ public class PlayerManager : MonoBehaviour
         {
             Debug.Log("Player died 💀");
             Destroy(gameObject); // удаляем игрока
+        }
+
+        if (other.CompareTag("Spaceship") && coins == 9)
+        {
+            Debug.Log("Level completed! 🎉");
+            // Здесь можно добавить код для перехода на следующий уровень или отображения экрана победы
         }
     }
 }
