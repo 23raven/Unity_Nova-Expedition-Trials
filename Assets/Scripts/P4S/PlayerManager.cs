@@ -3,8 +3,8 @@
 public class PlayerManager : MonoBehaviour
 {
     public int coins = 0;
+    public GameManagerTwo gameManager;
 
-    
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Coin"))
@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
+            gameManager.Defeat(); // вызываем метод поражения в GameManagerTwo  
             Debug.Log("Player died 💀");
             Destroy(gameObject); // удаляем игрока
         }

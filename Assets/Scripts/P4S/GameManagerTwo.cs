@@ -5,6 +5,7 @@ public class GameManagerTwo : MonoBehaviour
 {
     public GameObject startMenu;
     public Button startButton;
+    public GameObject defeatMenu;
 
     void Start()
     {
@@ -32,4 +33,15 @@ public class GameManagerTwo : MonoBehaviour
 
         startMenu.SetActive(false);
     }
+
+    public void Defeat()
+    {
+        Time.timeScale = 0f;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        defeatMenu.SetActive(true);
+    }
+
 }
