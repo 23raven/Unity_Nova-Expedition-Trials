@@ -2808,7 +2808,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1068292730
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4059,7 +4059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1505601613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6075,7 +6075,7 @@ MonoBehaviour:
   backText: {fileID: 1301174608}
   inGameUI: {fileID: 830825387}
   coinsText: {fileID: 1614688825}
-  victoryMenu: {fileID: 0}
+  victoryMenu: {fileID: 1505601612}
 --- !u!1 &2123376175
 GameObject:
   m_ObjectHideFlags: 0

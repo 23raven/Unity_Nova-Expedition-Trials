@@ -8,6 +8,8 @@ public class PlanetManager : MonoBehaviour
     public GameObject UICanvas;
     public GameObject MiniGame;
     public GameManagerOne gameManager;
+    public bool requiresDialog;
+    public GameObject dialogWindow;
     void OnMouseDown()
     {
         Debug.Log("You tapped on planet " + planetName);

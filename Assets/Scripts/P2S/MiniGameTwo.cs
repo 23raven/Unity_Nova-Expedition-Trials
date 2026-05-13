@@ -9,6 +9,7 @@ public class MiniGameTwo : MonoBehaviour
     private List<int> sequence = new List<int>();
     private int currentIndex = 0;
     private bool isPlayerTurn = false;
+    public GameObject contextWindow;
 
     void Start()
     {
@@ -16,7 +17,11 @@ public class MiniGameTwo : MonoBehaviour
         {
             tile.Init(this);
         }
+    }
 
+    public void StartMemoryGame()
+    {
+        contextWindow.SetActive(false);
         GenerateSequence();
         StartCoroutine(ShowSequence());
     }
@@ -72,6 +77,7 @@ public class MiniGameTwo : MonoBehaviour
         }
         else
         {
+            contextWindow.SetActive(true);
             Debug.Log("Неправильно ❌");
             isPlayerTurn = false;
         }
