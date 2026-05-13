@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,10 @@ public class GameManagerTwo : MonoBehaviour
     public GameObject startMenu;
     public Button startButton;
     public GameObject defeatMenu;
+    public GameObject backText;
+    public GameObject inGameUI;
+    public TMP_Text coinsText;
+    public GameObject victoryMenu;
 
     void Start()
     {
@@ -18,10 +23,7 @@ public class GameManagerTwo : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Mouse Click");
-        }
+        coinsText.text = "Coins: " + FindObjectOfType<PlayerManager>().coins;
     }
 
     public void StartGame()
@@ -32,6 +34,8 @@ public class GameManagerTwo : MonoBehaviour
         Cursor.visible = false;
 
         startMenu.SetActive(false);
+        inGameUI.SetActive(true);
+
     }
 
     public void Defeat()
@@ -42,6 +46,18 @@ public class GameManagerTwo : MonoBehaviour
         Cursor.visible = true;
 
         defeatMenu.SetActive(true);
+    }
+
+    public void showBackText()
+    {
+         backText.SetActive(true);
+    }
+
+    public void Victory()
+    {
+        Time.timeScale = 0f;
+        inGameUI.SetActive(false);
+        victoryMenu.SetActive(true);
     }
 
 }

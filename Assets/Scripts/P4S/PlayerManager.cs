@@ -23,7 +23,11 @@ public class PlayerManager : MonoBehaviour
         if (other.CompareTag("Spaceship") && coins == 8)
         {
             Debug.Log("Level completed! 🎉");
-            // Здесь можно добавить код для перехода на следующий уровень или отображения экрана победы
+            gameManager.Victory(); // вызываем метод победы в GameManagerTwo
+        }
+
+        if (coins == 8) { 
+            gameManager.showBackText(); // показываем текст о том, что нужно вернуться к космическому кораблю
         }
     }
 }
