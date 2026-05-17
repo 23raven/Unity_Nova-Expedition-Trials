@@ -24,6 +24,9 @@ public class MiniGameThree : MonoBehaviour
 
     public void OnDotClicked(Dots dot)
     {
+
+        dot.image.color = Color.white; // визуальная обратная связь
+
         if (firstDot == null)
         {
             firstDot = dot;

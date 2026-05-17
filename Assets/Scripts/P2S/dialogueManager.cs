@@ -4,19 +4,28 @@ using UnityEngine;
 public class dialogueManager : MonoBehaviour
 {
     public TMP_Text dialogueText;
-    [TextArea] public string startPhrase;
+    public string[] phrases;
 
     public AudioSource audioSource;
-    public AudioClip startAudio;
+    public AudioClip[] audioPhrases;
 
-    void Start()
+    public int delayTime = 1; // задержка в секундах
+
+    private int currentPhraseIndex = 0;
+
+    void OnEnable()
     {
-        dialogueText.text = startPhrase;
+        dialogueText.text = phrases[currentPhraseIndex];
 
-        if (startAudio != null && audioSource != null)
+        if (audioSource != null &&
+            audioPhrases != null &&
+            currentPhraseIndex < audioPhrases.Length)
         {
-            audioSource.clip = startAudio;
-            audioSource.Play();
+            audioSource.Stop();
+            audioSource.clip = audioPhrases[currentPhraseIndex];
+            audioSource.PlayDelayed(delayTime);
         }
+
+        currentPhraseIndex++;
     }
 }

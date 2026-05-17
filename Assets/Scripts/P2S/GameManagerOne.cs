@@ -1,27 +1,29 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameManagerOne : MonoBehaviour
 {
     public CameraController cameraController;
 
-    // UI интерфейс
+    // UI РёРЅС‚РµСЂС„РµР№СЃ
     public GameObject interfaceUI;
 
-    // UI мини-игры
+    // UI РјРёРЅРё-РёРіСЂС‹
     public GameObject currentMiniGame;
 
-    // объект планеты
+    // РѕР±СЉРµРєС‚ РїР»Р°РЅРµС‚С‹
     public PlanetManager currentPlanet;
 
-    // счетчик завершенных игр
+    // СЃС‡РµС‚С‡РёРє Р·Р°РІРµСЂС€РµРЅРЅС‹С… РёРіСЂ
     public int miniGameCount = 0;
 
-    // позиция камеры ДО приближения
+    // РїРѕР·РёС†РёСЏ РєР°РјРµСЂС‹ Р”Рћ РїСЂРёР±Р»РёР¶РµРЅРёСЏ
     private Vector3 startCamPos;
     private Quaternion startCamRot;
 
-    public Image[] planetIcons; // массив иконок планет для интерфейса 
+    public Image[] planetIcons; // РјР°СЃСЃРёРІ РёРєРѕРЅРѕРє РїР»Р°РЅРµС‚ РґР»СЏ РёРЅС‚РµСЂС„РµР№СЃР° 
 
     void Start()
     {
@@ -29,7 +31,7 @@ public class GameManagerOne : MonoBehaviour
         startCamRot = cameraController.transform.rotation;
     }
 
-    // вызывается при выборе планеты
+    // РІС‹Р·С‹РІР°РµС‚СЃСЏ РїСЂРё РІС‹Р±РѕСЂРµ РїР»Р°РЅРµС‚С‹
     public void SelectPlanet()
     {
         interfaceUI.SetActive(false);
@@ -39,35 +41,53 @@ public class GameManagerOne : MonoBehaviour
     {
         Debug.Log("MINIGAME COMPLETE");
 
-        // вернуть интерфейс
+        // РІРµСЂРЅСѓС‚СЊ РёРЅС‚РµСЂС„РµР№СЃ
         interfaceUI.SetActive(true);
 
-        // вернуть камеру
+        // РІРµСЂРЅСѓС‚СЊ РєР°РјРµСЂСѓ
         cameraController.ResetCamera();
         cameraController.transform.position = startCamPos;
         cameraController.transform.rotation = startCamRot;
 
-        // выключить мини-игру
+        // РІС‹РєР»СЋС‡РёС‚СЊ РјРёРЅРё-РёРіСЂСѓ
         Destroy(currentMiniGame);
 
         makeIconVisible(miniGameNumber);
 
-        // отключить планету
+        // РѕС‚РєР»СЋС‡РёС‚СЊ РїР»Р°РЅРµС‚Сѓ
         currentPlanet.enabled = false;
         currentPlanet.GetComponent<Collider>().enabled = false;
 
-        // увеличить счетчик
+        // СѓРІРµР»РёС‡РёС‚СЊ СЃС‡РµС‚С‡РёРє
         miniGameCount++;
 
         Debug.Log("MiniGames Completed: " + miniGameCount);
+
+        // РµСЃР»Рё РІСЃРµ 3 Р·Р°РІРµСЂС€РµРЅС‹ в†’ РїРµСЂРµС…РѕРґ РЅР° P3
+        if (miniGameCount >= 3)
+        {
+            StartCoroutine(LoadNextScene());
+        }
     }
 
-    public void makeIconVisible(int mgn) { 
-        if(mgn == 1) {
+    IEnumerator LoadNextScene()
+    {
+        yield return new WaitForSeconds(8f);
+        SceneManager.LoadScene("P3");
+    }
+
+    public void makeIconVisible(int mgn)
+    {
+        if (mgn == 1)
+        {
             planetIcons[0].color = Color.white;
-        } else if(mgn == 2) {
+        }
+        else if (mgn == 2)
+        {
             planetIcons[1].color = Color.white;
-        } else if(mgn == 3) {
+        }
+        else if (mgn == 3)
+        {
             planetIcons[2].color = Color.white;
         }
     }
