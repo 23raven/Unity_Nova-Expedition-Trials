@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManagerOne : MonoBehaviour
 {
     public CameraController cameraController;
+
+    // UI интерфейс
+    public GameObject interfaceUI;
 
     // UI мини-игры
     public GameObject currentMiniGame;
@@ -17,7 +21,7 @@ public class GameManagerOne : MonoBehaviour
     private Vector3 startCamPos;
     private Quaternion startCamRot;
 
-
+    public Image[] planetIcons; // массив иконок планет для интерфейса 
 
     void Start()
     {
@@ -25,27 +29,46 @@ public class GameManagerOne : MonoBehaviour
         startCamRot = cameraController.transform.rotation;
     }
 
-    public void WinMiniGame()
+    // вызывается при выборе планеты
+    public void SelectPlanet()
+    {
+        interfaceUI.SetActive(false);
+    }
+
+    public void WinMiniGame(int miniGameNumber)
     {
         Debug.Log("MINIGAME COMPLETE");
 
-        // 1. вернуть камеру
-        cameraController.ResetCamera();
+        // вернуть интерфейс
+        interfaceUI.SetActive(true);
 
+        // вернуть камеру
+        cameraController.ResetCamera();
         cameraController.transform.position = startCamPos;
         cameraController.transform.rotation = startCamRot;
 
-        // 2. выключить мини-игру
+        // выключить мини-игру
         Destroy(currentMiniGame);
 
-        // 3. отключить PlanetManager
-        currentPlanet.enabled = false;
+        makeIconVisible(miniGameNumber);
 
+        // отключить планету
+        currentPlanet.enabled = false;
         currentPlanet.GetComponent<Collider>().enabled = false;
 
-        // 4. увеличить счетчик
+        // увеличить счетчик
         miniGameCount++;
 
         Debug.Log("MiniGames Completed: " + miniGameCount);
+    }
+
+    public void makeIconVisible(int mgn) { 
+        if(mgn == 1) {
+            planetIcons[0].color = Color.white;
+        } else if(mgn == 2) {
+            planetIcons[1].color = Color.white;
+        } else if(mgn == 3) {
+            planetIcons[2].color = Color.white;
+        }
     }
 }

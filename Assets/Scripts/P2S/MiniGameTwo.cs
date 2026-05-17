@@ -71,7 +71,7 @@ public class MiniGameTwo : MonoBehaviour
             if (currentIndex >= sequence.Count)
             {
                 Debug.Log("Правильно ✅");
-                gameManager.WinMiniGame();
+                gameManager.WinMiniGame(2);
                 isPlayerTurn = false;
             }
         }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MiniGameOne : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class MiniGameOne : MonoBehaviour
         {
             Debug.Log("ПОПАЛ ✅");
 
-            gameManager.WinMiniGame();
+            gameManager.WinMiniGame(1);
         }
         else
         {

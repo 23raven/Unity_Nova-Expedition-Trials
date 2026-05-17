@@ -53,7 +53,7 @@ public class MiniGameThree : MonoBehaviour
             {
                 Debug.Log("YOU WON 🎉");
 
-                gameManager.WinMiniGame();
+                gameManager.WinMiniGame(3);
             }
         }
         else

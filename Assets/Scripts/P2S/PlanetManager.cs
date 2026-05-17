@@ -16,6 +16,7 @@ public class PlanetManager : MonoBehaviour
 
         gameManager.currentMiniGame = MiniGame;
         gameManager.currentPlanet = this;
+        gameManager.SelectPlanet();
 
         cameraController.SetTarget(transform);
 

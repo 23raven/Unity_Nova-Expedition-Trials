@@ -1237,6 +1237,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f891e5bb0f76d514b8fcdcbd5b95f782, type: 3}
   - {fileID: 8300000, guid: 7088f992f99e32a4aa795861a3c32d81, type: 3}
   - {fileID: 8300000, guid: 8b3a9ea20546e3b4f9404f9e34fa0cb0, type: 3}
+  characterImage: {fileID: 1523491997}
+  pose1: {fileID: 21300000, guid: c8fdbf87a7088cf46a738b6dfa60dee8, type: 3}
+  pose2: {fileID: 21300000, guid: 56014e4d39d16f943930ead9f8e721fb, type: 3}
 --- !u!4 &2103953207
 Transform:
   m_ObjectHideFlags: 0
