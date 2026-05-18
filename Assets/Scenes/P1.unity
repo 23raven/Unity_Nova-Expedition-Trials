@@ -789,7 +789,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c8fdbf87a7088cf46a738b6dfa60dee8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a03f604b14adde04e8cc0c15f3a9495f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1238,8 +1238,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7088f992f99e32a4aa795861a3c32d81, type: 3}
   - {fileID: 8300000, guid: 8b3a9ea20546e3b4f9404f9e34fa0cb0, type: 3}
   characterImage: {fileID: 1523491997}
-  pose1: {fileID: 21300000, guid: c8fdbf87a7088cf46a738b6dfa60dee8, type: 3}
-  pose2: {fileID: 21300000, guid: 56014e4d39d16f943930ead9f8e721fb, type: 3}
+  pose1: {fileID: 21300000, guid: a03f604b14adde04e8cc0c15f3a9495f, type: 3}
+  pose2: {fileID: 21300000, guid: bceab5db52600bf48b611f49bc8a95b1, type: 3}
 --- !u!4 &2103953207
 Transform:
   m_ObjectHideFlags: 0
