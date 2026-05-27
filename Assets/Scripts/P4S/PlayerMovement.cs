@@ -8,13 +8,15 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraTransform;
 
     [Header("Sprint")]
-    public float maxSprintTime = 3f;
+    public float maxSprintTime = 5f;
     public float recoverySpeed = 1f;
-    public float recoveryDelay = 1f; // задержка перед восстановлением
+    public float recoveryDelay = 5f; // задержка перед восстановлением
 
     private float currentSprintTime;
     private float recoveryTimer;
-    private bool isSprinting;
+    public bool isSprinting;
+
+    public AnimationController animationController;
 
     void Start()
     {
@@ -41,13 +43,15 @@ public class PlayerMovement : MonoBehaviour
 
         bool shift = Input.GetKey(KeyCode.LeftShift);
 
-        // 💥 СПРИНТ ВКЛЮЧАЕТСЯ ТОЛЬКО ЕСЛИ ЕСТЬ ЭНЕРГИЯ
-        if (shift && currentSprintTime > 0f && move.magnitude > 0.1f)
+        bool isMoving = move.magnitude > 0.1f;
+
+        // ===== SPRINT LOGIC =====
+        if (shift && currentSprintTime > 0f && isMoving)
         {
             isSprinting = true;
 
             currentSprintTime -= Time.deltaTime;
-            recoveryTimer = 0f; // сбрасываем таймер восстановления
+            recoveryTimer = 0f;
 
             if (currentSprintTime <= 0f)
             {
@@ -59,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isSprinting = false;
 
-            // ⏳ задержка перед восстановлением
             recoveryTimer += Time.deltaTime;
 
             if (recoveryTimer >= recoveryDelay)
@@ -73,9 +76,9 @@ public class PlayerMovement : MonoBehaviour
 
         transform.position += move * currentSpeed * Time.deltaTime;
 
-        if (move != Vector3.zero)
-        {
+        if (isMoving)
             transform.forward = move;
-        }
+
+        
     }
 }
