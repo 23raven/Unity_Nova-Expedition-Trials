@@ -25,17 +25,20 @@ public class CameraManager : MonoBehaviour
 
     void RotateCamera()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+        if (Time.timeScale != 0f)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
+            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
-        yaw += mouseX;
-        pitch -= mouseY;
+            yaw += mouseX;
+            pitch -= mouseY;
 
-        pitch = Mathf.Clamp(pitch, minY, maxY);
+            pitch = Mathf.Clamp(pitch, minY, maxY);
+        }
 
-    }
+        }
 
-    void FollowTarget()
+        void FollowTarget()
     {
         Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
         Vector3 offset = rotation * new Vector3(0, height, -distance);

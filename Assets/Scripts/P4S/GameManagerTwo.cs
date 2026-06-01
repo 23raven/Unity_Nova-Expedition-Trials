@@ -23,7 +23,7 @@ public class GameManagerTwo : MonoBehaviour
 
     void Update()
     {
-        coinsText.text = "Solar Pearls: " + FindObjectOfType<PlayerManager>().coins;
+        coinsText.text = "Solar Pearls: " + FindObjectOfType<PlayerManager>().coins + "/8";
     }
 
     public void StartGame()
