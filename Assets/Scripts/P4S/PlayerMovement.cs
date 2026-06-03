@@ -124,4 +124,7 @@ public class PlayerMovement : MonoBehaviour
     {
         return currentSprintTime / maxSprintTime;
     }
+
+
+
 }
