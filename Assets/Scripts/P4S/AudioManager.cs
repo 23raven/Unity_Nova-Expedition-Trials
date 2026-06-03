@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [Header("Audio Sources")]
-    [SerializeField] private AudioSource gameAudioSource;
-    [SerializeField] private AudioSource playerAudioSource;
+    [Header("GAME SOURCES")]
+    [SerializeField] private AudioSource backgroundMusicSource;
+    [SerializeField] private AudioSource backgroundNoiseSource;
+    [SerializeField] private AudioSource gameSfxSource;
+
+    [Header("PLAYER SOURCES")]
+    [SerializeField] private AudioSource movementSource;
+    [SerializeField] private AudioSource breatheSource;
 
     [Header("GAME")]
     [SerializeField] private AudioClip backgroundNoise;
@@ -19,19 +24,29 @@ public class AudioManager : MonoBehaviour
 
     #region GAME
 
-    public void PlayBackgroundNoise()
-    {
-        gameAudioSource.PlayOneShot(backgroundNoise);
-    }
-
     public void PlayBackgroundMusic()
     {
-        gameAudioSource.PlayOneShot(backgroundMusic);
+        if (backgroundMusicSource.isPlaying)
+            return;
+
+        backgroundMusicSource.clip = backgroundMusic;
+        backgroundMusicSource.loop = true;
+        backgroundMusicSource.Play();
+    }
+
+    public void PlayBackgroundNoise()
+    {
+        if (backgroundNoiseSource.isPlaying)
+            return;
+
+        backgroundNoiseSource.clip = backgroundNoise;
+        backgroundNoiseSource.loop = true;
+        backgroundNoiseSource.Play();
     }
 
     public void PlayDeathSound()
     {
-        gameAudioSource.PlayOneShot(deathSound);
+        gameSfxSource.PlayOneShot(deathSound);
     }
 
     #endregion
@@ -40,22 +55,47 @@ public class AudioManager : MonoBehaviour
 
     public void PlayPickUpSound()
     {
-        playerAudioSource.PlayOneShot(pickUpSound);
+        gameSfxSource.PlayOneShot(pickUpSound);
     }
 
     public void PlayWalkingSound()
     {
-        playerAudioSource.PlayOneShot(walkingSound);
+        if (movementSource.clip == walkingSound && movementSource.isPlaying)
+            return;
+
+        movementSource.clip = walkingSound;
+        movementSource.loop = true;
+        movementSource.Play();
     }
 
     public void PlayRunSound()
     {
-        playerAudioSource.PlayOneShot(runSound);
+        if (movementSource.clip == runSound && movementSource.isPlaying)
+            return;
+
+        movementSource.clip = runSound;
+        movementSource.loop = true;
+        movementSource.Play();
+    }
+
+    public void StopMovementSound()
+    {
+        movementSource.Stop();
     }
 
     public void PlayBreatheSound()
     {
-        playerAudioSource.PlayOneShot(breatheSound);
+        if (breatheSource.isPlaying)
+            return;
+
+        breatheSource.clip = breatheSound;
+        breatheSource.loop = true;
+        breatheSource.Play();
+    }
+
+    public void StopBreatheSound()
+    {
+        breatheSource.Stop();
     }
 
     #endregion

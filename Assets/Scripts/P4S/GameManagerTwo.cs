@@ -11,6 +11,7 @@ public class GameManagerTwo : MonoBehaviour
     public GameObject inGameUI;
     public TMP_Text coinsText;
     public GameObject victoryMenu;
+    public GameObject audioManager;
 
     void Start()
     {
@@ -28,6 +29,8 @@ public class GameManagerTwo : MonoBehaviour
 
     public void StartGame()
     {
+        audioManager.GetComponent<AudioManager>().PlayBackgroundMusic();
+        audioManager.GetComponent<AudioManager>().PlayBackgroundNoise();
         Time.timeScale = 1f;
 
         Cursor.lockState = CursorLockMode.Locked;

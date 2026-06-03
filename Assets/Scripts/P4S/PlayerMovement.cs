@@ -10,25 +10,31 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sprint")]
     public float maxSprintTime = 5f;
     public float recoverySpeed = 1f;
-    public float recoveryDelay = 5f; // задержка перед восстановлением
+    public float recoveryDelay = 5f;
 
     private float currentSprintTime;
     private float recoveryTimer;
+
     public bool isSprinting;
 
+    [Header("References")]
     public AnimationController animationController;
+    public GameManagerTwo gameManager;
 
-    void Start()
+    private AudioManager audioManager;
+
+    private void Start()
     {
         currentSprintTime = maxSprintTime;
+        audioManager = gameManager.audioManager.GetComponent<AudioManager>();
     }
 
-    void Update()
+    private void Update()
     {
         Move();
     }
 
-    void Move()
+    private void Move()
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -41,12 +47,12 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = forward * v + right * h;
 
-        bool shift = Input.GetKey(KeyCode.LeftShift);
-
         bool isMoving = move.magnitude > 0.1f;
+        bool shiftPressed = Input.GetKey(KeyCode.LeftShift);
 
-        // ===== SPRINT LOGIC =====
-        if (shift && currentSprintTime > 0f && isMoving)
+        // ===== SPRINT =====
+
+        if (shiftPressed && currentSprintTime > 0f && isMoving)
         {
             isSprinting = true;
 
@@ -67,18 +73,55 @@ public class PlayerMovement : MonoBehaviour
 
             if (recoveryTimer >= recoveryDelay)
             {
-                currentSprintTime += Time.deltaTime * recoverySpeed;
-                currentSprintTime = Mathf.Clamp(currentSprintTime, 0f, maxSprintTime);
+                audioManager.StopBreatheSound();
+
+                currentSprintTime += recoverySpeed * Time.deltaTime;
+                currentSprintTime = Mathf.Clamp(
+                    currentSprintTime,
+                    0f,
+                    maxSprintTime
+                );
+            }
+            else
+            {
+                audioManager.PlayBreatheSound();
             }
         }
 
-        float currentSpeed = isSprinting ? speed * sprintMultiplier : speed;
+        // ===== MOVEMENT SOUND =====
 
-        transform.position += move * currentSpeed * Time.deltaTime;
+        if (!isMoving)
+        {
+            audioManager.StopMovementSound();
+        }
+        else if (isSprinting)
+        {
+            audioManager.PlayRunSound();
+        }
+        else
+        {
+            audioManager.PlayWalkingSound();
+        }
+
+        // ===== MOVEMENT =====
+
+        float currentSpeed =
+            isSprinting
+                ? speed * sprintMultiplier
+                : speed;
+
+        transform.position += move.normalized * currentSpeed * Time.deltaTime;
 
         if (isMoving)
-            transform.forward = move;
+        {
+            transform.forward = move.normalized;
+        }
 
         
+    }
+
+    public float GetSprintPercent()
+    {
+        return currentSprintTime / maxSprintTime;
     }
 }

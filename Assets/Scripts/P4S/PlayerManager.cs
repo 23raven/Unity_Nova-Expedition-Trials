@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (other.CompareTag("Coin"))
         {
+            gameManager.audioManager.GetComponent<AudioManager>().PlayPickUpSound();
             coins++;
             animationController?.PlayPickUp(); // добавить
             Destroy(other.gameObject);
@@ -25,6 +26,7 @@ public class PlayerManager : MonoBehaviour
         // остальное без изменений...
         if (other.CompareTag("Enemy"))
         {
+            gameManager.audioManager.GetComponent<AudioManager>().PlayDeathSound();
             gameManager.Defeat();
             Debug.Log("Player died 💀");
             Destroy(gameObject);
