@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class p3manager : MonoBehaviour
+public class P5Manager : MonoBehaviour
 {
     public TMP_Text dialogueText;
     public string[] phrases;
@@ -20,10 +20,6 @@ public class p3manager : MonoBehaviour
 
     void Start()
     {
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-
         dialogueText.text = phrases[currentPhrase];
         nextButton.onClick.AddListener(NextPhrase);
 
@@ -54,7 +50,7 @@ public class p3manager : MonoBehaviour
 
     void UpdateCharacterPose()
     {
-        switch(currentPhrase)
+        switch (currentPhrase)
         {
             case 0:
                 characterImage.sprite = poses[0];
@@ -64,17 +60,14 @@ public class p3manager : MonoBehaviour
                 break;
             case 2:
                 characterImage.sprite = poses[2];
-                break; 
-            case 3:
-                characterImage.sprite = poses[2];
                 break;
-            case 4:
-                characterImage.sprite = poses[1];
+            case 3:
+                characterImage.sprite = poses[3];
                 break;
             default:
                 characterImage.sprite = poses[0];
                 break;
         }
-        
+
     }
 }

@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManagerTwo : MonoBehaviour
@@ -59,8 +61,19 @@ public class GameManagerTwo : MonoBehaviour
     public void Victory()
     {
         Time.timeScale = 0f;
+
         inGameUI.SetActive(false);
         victoryMenu.SetActive(true);
+
+        StartCoroutine(OpenNextScene());
+    }
+
+    private IEnumerator OpenNextScene()
+    {
+        yield return new WaitForSecondsRealtime(3f);
+
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("P5");
     }
 
 }

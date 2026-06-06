@@ -1135,11 +1135,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1866022911}
-  - component: {fileID: 1866022910}
-  - component: {fileID: 1866022909}
+  - component: {fileID: 1866022912}
   - component: {fileID: 1866022908}
+  - component: {fileID: 1866022909}
   m_Layer: 0
-  m_Name: p3manager
+  m_Name: P5Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1339,43 +1339,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1866022910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866022907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec383eb0a10cc64395159b11c9f6c3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::p3manager
-  dialogueText: {fileID: 888276543}
-  phrases:
-  - "Good news! I\u2019ve pinpointed the location of the Stellar Pearls - they\u2019re
-    on the blue planet!"
-  - My scans show exactly eight Stellar Pearls scattered across the surface. We need
-    to collect every single one
-  - "But there\u2019s a problem\u2026 hostile lifeforms have detected our presence"
-  - "They\u2019ll try to stop you, so stay alert, keep moving and don\u2019t let
-    them catch you!"
-  - "Collect all 8 Stellar Pearls and make it back safely. I\u2019ll be guiding you
-    from here, partner!"
-  nextButton: {fileID: 315473470}
-  nextSceneName: P4
-  audioSource: {fileID: 1866022909}
-  audioPhrases:
-  - {fileID: 8300000, guid: fc0ff101c41c1fe4599955d7d2bad8bb, type: 3}
-  - {fileID: 8300000, guid: 7b3f4a184d5392049980531bba4d0259, type: 3}
-  - {fileID: 8300000, guid: 1ef49c9fac8e99442a2be7a0308b9a7d, type: 3}
-  - {fileID: 8300000, guid: 038ad919d84335e498d4900fb7505f83, type: 3}
-  - {fileID: 8300000, guid: 15de2d4797a619e419895247bd1f741d, type: 3}
-  characterImage: {fileID: 2125796159}
-  poses:
-  - {fileID: 21300000, guid: a03f604b14adde04e8cc0c15f3a9495f, type: 3}
-  - {fileID: 21300000, guid: bceab5db52600bf48b611f49bc8a95b1, type: 3}
-  - {fileID: 21300000, guid: bc9567944c5e61a41b4772c0a0566151, type: 3}
 --- !u!4 &1866022911
 Transform:
   m_ObjectHideFlags: 0
@@ -1391,6 +1354,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1866022912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866022907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76e77b786579cfb49a90e0f5cf78a0e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::P5Manager
+  dialogueText: {fileID: 888276543}
+  phrases:
+  - We did it! Every Stellar Pearl has been collected!
+  - Now it's finally time to head home... but first, I think we've earned a celebration
+    at the famous Bar at the Edge of the Universe
+  - 'There''s just one tiny problem: a massive asteroid belt is drifting right toward
+    our flight path'
+  - No worries! We'll just have to fly through it. What could possibly go wrong?
+  nextButton: {fileID: 315473470}
+  nextSceneName: P6
+  audioSource: {fileID: 1866022909}
+  audioPhrases:
+  - {fileID: 8300000, guid: 9cf450e604d4fb84288b2162f26963f6, type: 3}
+  - {fileID: 8300000, guid: 93f8077637b18a64bba6d1cebd9d97e4, type: 3}
+  - {fileID: 8300000, guid: b9e00202844b1984fb8d44f4a124cf15, type: 3}
+  - {fileID: 8300000, guid: b9ae9fd5ed383dd41a6c1f01a86eb131, type: 3}
+  characterImage: {fileID: 2125796159}
+  poses:
+  - {fileID: 21300000, guid: a03f604b14adde04e8cc0c15f3a9495f, type: 3}
+  - {fileID: 21300000, guid: bceab5db52600bf48b611f49bc8a95b1, type: 3}
+  - {fileID: 21300000, guid: bc9567944c5e61a41b4772c0a0566151, type: 3}
+  - {fileID: 21300000, guid: bceab5db52600bf48b611f49bc8a95b1, type: 3}
 --- !u!1 &1969726991
 GameObject:
   m_ObjectHideFlags: 0
