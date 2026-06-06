@@ -11,6 +11,21 @@ public class GameManagerThree : MonoBehaviour
     private float timeLeft = 30f;
     private bool gameEnded = false;
 
+        void Start()
+        {
+            Time.timeScale = 0f;
+            startUI.SetActive(true);
+            defeatUI.SetActive(false);
+            victoryUI.SetActive(false);
+        }
+    
+        public void StartGame()
+        {
+            Time.timeScale = 1f;
+            startUI.SetActive(false);
+        
+    }
+
     void Update()
     {
         if (gameEnded) return;
