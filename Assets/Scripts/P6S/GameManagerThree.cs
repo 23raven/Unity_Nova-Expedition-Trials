@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManagerThree : MonoBehaviour
 {
@@ -11,20 +13,23 @@ public class GameManagerThree : MonoBehaviour
     private float timeLeft = 30f;
     private bool gameEnded = false;
 
-        void Start()
+    public AudioSource musicSource;
+
+    void Start()
         {
             Time.timeScale = 0f;
             startUI.SetActive(true);
             defeatUI.SetActive(false);
             victoryUI.SetActive(false);
-        }
+            
+    }
     
         public void StartGame()
         {
             Time.timeScale = 1f;
             startUI.SetActive(false);
-        
-    }
+            musicSource.Play();
+        }
 
     void Update()
     {
@@ -39,6 +44,8 @@ public class GameManagerThree : MonoBehaviour
             gameEnded = true;
             victoryUI.SetActive(true);
             Time.timeScale = 0f;
+
+            StartCoroutine(VictorySequence());
         }
     }
 
@@ -49,5 +56,28 @@ public class GameManagerThree : MonoBehaviour
         gameEnded = true;
         defeatUI.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    private IEnumerator VictorySequence()
+    {
+        float startVolume = musicSource.volume;
+
+        float timer = 0f;
+        float fadeDuration = 5f;
+
+        while (timer < fadeDuration)
+        {
+            timer += Time.unscaledDeltaTime;
+
+            musicSource.volume = Mathf.Lerp(
+                startVolume,
+                0f,
+                timer / fadeDuration
+            );
+
+            yield return null;
+        }
+
+        SceneManager.LoadScene("P7");
     }
 }
