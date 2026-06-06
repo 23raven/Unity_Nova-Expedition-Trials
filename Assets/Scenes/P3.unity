@@ -859,7 +859,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fc0ff101c41c1fe4599955d7d2bad8bb, type: 3}
   - {fileID: 8300000, guid: 7b3f4a184d5392049980531bba4d0259, type: 3}
   - {fileID: 8300000, guid: 1ef49c9fac8e99442a2be7a0308b9a7d, type: 3}
-  - {fileID: 8300000, guid: 038ad919d84335e498d4900fb7505f83, type: 3}
+  - {fileID: 8300000, guid: 2c57fb81c7c5fdb4d814dd8c9a320e1e, type: 3}
   - {fileID: 8300000, guid: 15de2d4797a619e419895247bd1f741d, type: 3}
   characterImage: {fileID: 78366209}
   poses:

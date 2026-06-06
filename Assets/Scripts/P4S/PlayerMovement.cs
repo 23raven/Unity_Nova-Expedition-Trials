@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private float recoveryTimer;
 
     public bool isSprinting;
+    private bool exhausted;
 
     [Header("References")]
     public AnimationController animationController;
@@ -62,29 +63,43 @@ public class PlayerMovement : MonoBehaviour
             if (currentSprintTime <= 0f)
             {
                 currentSprintTime = 0f;
+
                 isSprinting = false;
+                exhausted = true;
+
+                audioManager.PlayBreatheSound();
             }
         }
         else
         {
             isSprinting = false;
 
-            recoveryTimer += Time.deltaTime;
-
-            if (recoveryTimer >= recoveryDelay)
+            if (exhausted)
             {
-                audioManager.StopBreatheSound();
+                recoveryTimer += Time.deltaTime;
 
+                if (recoveryTimer >= recoveryDelay)
+                {
+                    exhausted = false;
+
+                    audioManager.StopBreatheSound();
+
+                    currentSprintTime += recoverySpeed * Time.deltaTime;
+                    currentSprintTime = Mathf.Clamp(
+                        currentSprintTime,
+                        0f,
+                        maxSprintTime
+                    );
+                }
+            }
+            else
+            {
                 currentSprintTime += recoverySpeed * Time.deltaTime;
                 currentSprintTime = Mathf.Clamp(
                     currentSprintTime,
                     0f,
                     maxSprintTime
                 );
-            }
-            else
-            {
-                audioManager.PlayBreatheSound();
             }
         }
 
@@ -116,15 +131,10 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.forward = move.normalized;
         }
-
-        
     }
 
     public float GetSprintPercent()
     {
         return currentSprintTime / maxSprintTime;
     }
-
-
-
 }

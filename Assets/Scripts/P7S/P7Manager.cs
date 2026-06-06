@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class P5Manager : MonoBehaviour
+public class P7Manager : MonoBehaviour
 {
     public TMP_Text dialogueText;
     public string[] phrases;
@@ -66,6 +66,15 @@ public class P5Manager : MonoBehaviour
                 break;
             case 3:
                 characterImage.sprite = poses[3];
+                break;
+            case 4:
+                characterImage.sprite = poses[4];
+                break;
+            case 5:
+                characterImage.sprite = poses[5];
+                break;
+            case 6:
+                characterImage.sprite = poses[6];
                 break;
             default:
                 characterImage.sprite = poses[0];

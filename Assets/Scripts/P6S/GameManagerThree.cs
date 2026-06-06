@@ -29,7 +29,9 @@ public class GameManagerThree : MonoBehaviour
             Time.timeScale = 1f;
             startUI.SetActive(false);
             musicSource.Play();
-        }
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+    }
 
     void Update()
     {
