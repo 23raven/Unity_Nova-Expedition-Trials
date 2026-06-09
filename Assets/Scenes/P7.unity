@@ -2122,73 +2122,56 @@ MonoBehaviour:
 
     by NoCopyrightSounds
 
-    
+
 
     "[no
     copyright music] coffee time"
 
     by shushubobo
 
-    
+
 
     "rose water"
 
     by
     massobeats
 
-    
+
 
     "It''s Different, Staarz - BadBoyHeaven"
 
     by NoCopyrightSounds
 
-    
+
 
     "Jazz
     Music #1"
 
     by Mogo Mogo
 
-    
-
-    "Diviners, Ren - Savannah 2026 (Japanese
-    Version)"
-
-    by NoCopyrightSounds
 
 
-    
+    "Diviners, Ren - Savannah 2026 (Japanese Version)"
+
+    by
+    NoCopyrightSounds
+
+
+
 
     --TOOLS & ASSETS--
 
-    Character
-    created with CHARAT
+    Character created with CHARAT
 
     https://charat.me/en/
 
 
-    Assets were imported via
-    Unity Asset Store
+    Assets
+    were imported via Unity Asset Store
 
 
-    
 
-    --SPECIAL THANKS--
-
-    To everyone who played
-    this project
-
-    
-
-    --PERSONAL NOTE--
-
-    This project helped me strengthen
-    my understanding of the Unity Engine and gain practical experience in game development
-
-    
-
-    THANK
-    YOU FOR PLAYING'
+    THANK YOU FOR PLAYING'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac04853a629223940a086afbe06f2151, type: 2}
   m_sharedMaterial: {fileID: -3687305235997380675, guid: ac04853a629223940a086afbe06f2151, type: 2}
