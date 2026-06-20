@@ -23,6 +23,7 @@ public class CreditsScroller : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
         if (musicSource != null)
         {
             musicSource.volume = 0f;
